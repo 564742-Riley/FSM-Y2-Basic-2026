@@ -17,13 +17,15 @@ public class IdleState : State
         // this method is called when the state begins
 
         Debug.Log("entering idle state");
-        player.sr.color = new Color(0.5f, 0.8f, 0.7f);
+        player.anim.SetBool("Idle", true);
+        //player.sr.color = new Color(0.5f, 0.8f, 0.7f);
     }
 
     public override void Exit()
     {
         // this method is called when the state has finished
         Debug.Log("exiting idle state");
+        player.anim.SetBool("Idle", false);
 
         //you should disable any running coroutines here
         player.StopAllCoroutines();

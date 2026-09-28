@@ -12,6 +12,8 @@ public class StateMachine
     public IdleState idleState;
     public JumpState jumpState;
     public RunState runState;
+    public AttackState AttackState;
+    public DieState DieState;
 
 
     //constructor
@@ -21,6 +23,8 @@ public class StateMachine
         idleState = new IdleState(player, this);
         jumpState = new JumpState(player, this);
         runState = new RunState(player, this);
+        AttackState = new AttackState(player, this);
+        DieState = new DieState(player, this);
 
     }
 

@@ -7,6 +7,7 @@ using UnityEngine;
 public class JumpState : State
 {
     float rotationSpeed;
+    float yvel;
 
     
     public JumpState(PlayerScript player, StateMachine sm) : base(player, sm)
@@ -15,14 +16,23 @@ public class JumpState : State
 
     public override void Enter()
     {
-        Debug.Log("entering jumping state");
+        Debug.Log("entering Jumping state");
 
-        player.sr.color = new Color(0.8f, 0.3f, 0.4f);  //change the sprite colour
+        //player.sr.color = new Color(0.8f, 0.3f, 0.4f);  //change the sprite colour
+
+        //set y velocity
+        
+
+        //play the jump animation
+
+        player.anim.SetBool("Jump", true );
+
     }
 
     public override void Exit()
     {
         //exit the jump state
+        player.anim.SetBool("Jump", false);
     }
 
     public override void Update()

@@ -20,13 +20,15 @@ public class RunState : State
         horizontalInput = verticalInput = 0.0f;
 
         Debug.Log("entering running state");
+        player.anim.SetBool("walk", true);
 
-        player.sr.color = new Color(0.8f, 0.8f, 0.2f);
+        //player.sr.color = new Color(0.8f, 0.8f, 0.2f);
     }
 
     public override void Exit()
     {
         base.Exit();
+        player.anim.SetBool("walk", false);
     }
 
 
@@ -34,7 +36,7 @@ public class RunState : State
     public override void Update()
     {
 
-        TestMethod("hello");
+        //TestMethod("hello");
 
         
 
