@@ -195,6 +195,16 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
     m_Priority: 0
+  attackAction:
+    m_Name: Attack
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 5254f452-facb-48ee-b6e2-e769625eafcf
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+    m_Priority: 0
 --- !u!212 &295177917
 SpriteRenderer:
   serializedVersion: 3
@@ -773,8 +783,8 @@ Transform:
   m_GameObject: {fileID: 2111265386}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: -3.52, z: 0}
-  m_LocalScale: {x: 20.400122, y: 1.3199956, z: 1}
+  m_LocalPosition: {x: -0.1, y: -4.6011, z: 0}
+  m_LocalScale: {x: 20.400122, y: 3.4821484, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

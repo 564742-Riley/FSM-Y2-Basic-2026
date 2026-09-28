@@ -1,15 +1,15 @@
 using UnityEngine;
 
-public class DieState : State
+public class CrouchState : State
 {
    
-     public DieState(PlayerScript player, StateMachine sm) : base(player, sm)
+     public CrouchState(PlayerScript player, StateMachine sm) : base(player, sm)
      {
      }
 
     public override void Enter()
     {
-        Debug.Log("entering Dieing state");
+        Debug.Log("entering the crouch state");
 
         //player.sr.color = new Color(0.1f, 0.9f, 0.3f);  //change the sprite colour
     }
@@ -17,7 +17,7 @@ public class DieState : State
 
     public override void Exit()
     {
-        //exit the Die state
+        //exit the Crouch state
     }
     public override void Update()
     {

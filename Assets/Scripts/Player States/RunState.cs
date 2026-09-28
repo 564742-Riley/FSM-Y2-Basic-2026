@@ -33,13 +33,10 @@ public class RunState : State
 
 
 
+   
+    
     public override void Update()
     {
-
-        //TestMethod("hello");
-
-        
-
         ReadInput();
 
         if (player.interactAction.IsPressed())
@@ -52,18 +49,37 @@ public class RunState : State
             sm.ChangeState(sm.jumpState);
         }
 
-        //debug move gameObject
-        player.rb.linearVelocity = player.moveAction.ReadValue<Vector2>() * speed;
+        if (player.attackAction.IsPressed())
+        {
+            sm.ChangeState(sm.attackState);
+        }
 
+        
+        Vector2 moveInput = player.moveAction.ReadValue<Vector2>();
+
+        // Move player
+        player.rb.linearVelocity = moveInput * speed;
+
+        
+        if (moveInput.x > 0.1f)
+        {
+            player.sr.flipX = false;
+        }
+        else if (moveInput.x < -0.1f)
+        {
+            player.sr.flipX = true;
+        }
 
         UIscript.ui.DrawText("*** This is the running state ***\n");
         UIscript.ui.DrawText("Left/Right arrows = Move Sprite");
         UIscript.ui.DrawText("E = Idle State");
         UIscript.ui.DrawText("Space = Jump state");
-
-
-
+        UIscript.ui.DrawText("left click = Attack State");
     }
+
+
+
+    
 
     public override void OnTriggerEnter2D(Collider2D collision)
     {

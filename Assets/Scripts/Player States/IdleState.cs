@@ -25,6 +25,7 @@ public class IdleState : State
     {
         // this method is called when the state has finished
         Debug.Log("exiting idle state");
+
         player.anim.SetBool("Idle", false);
 
         //you should disable any running coroutines here
@@ -44,6 +45,11 @@ public class IdleState : State
             sm.ChangeState(sm.jumpState);
         }
 
+        if (player.attackAction.IsPressed())
+        {
+            sm.ChangeState(sm.attackState);
+        }
+
 
         //example of running a coroutine from a state and not directly from the monobehaviour
         if (player.crouchAction.IsPressed())
@@ -54,6 +60,7 @@ public class IdleState : State
         UIscript.ui.DrawText("*** This is the idle state ***\n");
         UIscript.ui.DrawText("Space = Jump State");
         UIscript.ui.DrawText("Left/Right arrows = Move State");
+        UIscript.ui.DrawText("left click = Attack State");
         UIscript.ui.DrawText("C = Start the coroutine");
 
 

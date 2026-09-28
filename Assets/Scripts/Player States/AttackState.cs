@@ -14,11 +14,20 @@ public class AttackState : State
         Debug.Log("entering Attacking state");
 
         //player.sr.color = new Color(0.2f, 0.6f, 0.7f);  //change the sprite colour
+
+       
+
+        //play the jump animation
+        player.anim.SetBool("Attack", true);
+
+
+
     }
 
     public override void Exit()
     {
         //exit the Attack state
+        player.anim.SetBool("Attack", false);
     }
     public override void Update()
     {
