@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 public class AttackState : State
 {
 
@@ -13,11 +14,9 @@ public class AttackState : State
     {
         Debug.Log("entering Attacking state");
 
-        //player.sr.color = new Color(0.2f, 0.6f, 0.7f);  //change the sprite colour
-
        
 
-        //play the jump animation
+        //play the Attack animation
         player.anim.SetBool("Attack", true);
 
 
@@ -48,10 +47,15 @@ public class AttackState : State
             sm.ChangeState(sm.jumpState);
         }
         
-        
+        if (Mouse.current.leftButton.wasReleasedThisFrame)
+        {
+            sm.ChangeState(sm.idleState);
+        }
+
+
         UIscript.ui.DrawText("*** This is the Attacking state ***\n");
         UIscript.ui.DrawText("Left/Right arrows = Move State");
-        UIscript.ui.DrawText("E = Idle State");
+        UIscript.ui.DrawText("C = Crouch");
         UIscript.ui.DrawText("Space = Jump state");
 
     }

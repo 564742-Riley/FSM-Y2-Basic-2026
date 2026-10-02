@@ -159,7 +159,7 @@ MonoBehaviour:
     m_Name: Move
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 36ce232d-5788-465e-8e2a-b1bacfd0aab5
+    m_Id: 519b20c8-2cbb-4a7b-986a-54bf256b0972
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -274,7 +274,7 @@ Transform:
   m_GameObject: {fileID: 295177915}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.54, y: 1.07, z: 0}
+  m_LocalPosition: {x: -2.54, y: -1.44, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -662,8 +662,8 @@ GameObject:
   - component: {fileID: 2111265388}
   - component: {fileID: 2111265387}
   m_Layer: 0
-  m_Name: Square
-  m_TagString: Untagged
+  m_Name: Floor
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

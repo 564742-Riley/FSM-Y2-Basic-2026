@@ -22,7 +22,7 @@ public class RunState : State
         Debug.Log("entering running state");
         player.anim.SetBool("walk", true);
 
-        //player.sr.color = new Color(0.8f, 0.8f, 0.2f);
+       
     }
 
     public override void Exit()
@@ -33,34 +33,47 @@ public class RunState : State
 
 
 
-   
-    
+
+
     public override void Update()
     {
         ReadInput();
 
-        if (player.interactAction.IsPressed())
-        {
-            sm.ChangeState(sm.idleState);
-        }
-
-        if (player.jumpAction.IsPressed())
-        {
-            sm.ChangeState(sm.jumpState);
-        }
-
-        if (player.attackAction.IsPressed())
-        {
-            sm.ChangeState(sm.attackState);
-        }
-
-        
         Vector2 moveInput = player.moveAction.ReadValue<Vector2>();
 
-        // Move player
-        player.rb.linearVelocity = moveInput * speed;
+       
+        if (player.jumpAction.WasPressedThisFrame())
+        {
+            
+            player.rb.linearVelocity = new Vector2(
+                moveInput.x * speed,
+                player.rb.linearVelocity.y
+            );
+
+            sm.ChangeState(sm.jumpState);
+            
+        }
+
+        // Attack
+        if (player.attackAction.WasPressedThisFrame())
+        {
+            sm.ChangeState(sm.attackState);
+            
+        }
 
         
+        if (moveInput.magnitude < 0.1f)
+        {
+            sm.ChangeState(sm.idleState);
+            
+        }
+
+       
+        player.rb.linearVelocity = new Vector2(
+            moveInput.x * speed,
+            player.rb.linearVelocity.y
+        );
+
         if (moveInput.x > 0.1f)
         {
             player.sr.flipX = false;
@@ -71,15 +84,10 @@ public class RunState : State
         }
 
         UIscript.ui.DrawText("*** This is the running state ***\n");
-        UIscript.ui.DrawText("Left/Right arrows = Move Sprite");
-        UIscript.ui.DrawText("E = Idle State");
-        UIscript.ui.DrawText("Space = Jump state");
+        UIscript.ui.DrawText("Space = Jump State");
         UIscript.ui.DrawText("left click = Attack State");
     }
 
-
-
-    
 
     public override void OnTriggerEnter2D(Collider2D collision)
     {

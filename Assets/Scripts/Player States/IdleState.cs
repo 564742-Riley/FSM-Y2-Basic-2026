@@ -14,12 +14,13 @@ public class IdleState : State
 
     public override void Enter()
     {
-        // this method is called when the state begins
+      
 
-        Debug.Log("entering idle state");
+        player.rb.linearVelocity = Vector2.zero;
+
         player.anim.SetBool("Idle", true);
-        //player.sr.color = new Color(0.5f, 0.8f, 0.7f);
     }
+
 
     public override void Exit()
     {
@@ -28,16 +29,20 @@ public class IdleState : State
 
         player.anim.SetBool("Idle", false);
 
-        //you should disable any running coroutines here
-        player.StopAllCoroutines();
+        
     }
 
 
     public override void Update()
     {
-        if( player.moveAction.ReadValue<Vector2>().magnitude > 0.1f )
+        if(player.moveAction.ReadValue<Vector2>().magnitude > 0.1f )
         {
             sm.ChangeState(sm.runState);
+        }
+
+        if (player.moveAction.ReadValue<Vector2>().magnitude < 0.1f)
+        {
+            sm.ChangeState(sm.idleState);
         }
 
         if (player.jumpAction.IsPressed())
@@ -50,18 +55,18 @@ public class IdleState : State
             sm.ChangeState(sm.attackState);
         }
 
-
-        //example of running a coroutine from a state and not directly from the monobehaviour
         if (player.crouchAction.IsPressed())
         {
-            player.StartCoroutine( IdleCo() );
+            sm.ChangeState(sm.crouchState);
         }
+
+        
 
         UIscript.ui.DrawText("*** This is the idle state ***\n");
         UIscript.ui.DrawText("Space = Jump State");
         UIscript.ui.DrawText("Left/Right arrows = Move State");
         UIscript.ui.DrawText("left click = Attack State");
-        UIscript.ui.DrawText("C = Start the coroutine");
+        UIscript.ui.DrawText("C = Crouch");
 
 
     }
@@ -76,21 +81,7 @@ public class IdleState : State
     }
 
 
-    public IEnumerator IdleCo()
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            yield return new WaitForSeconds(2);
-            Debug.Log("Coroutine step 1");
-
-            yield return new WaitForSeconds(2);
-            Debug.Log("Coroutine step 2");
-
-            Debug.Log("Coroutine repeat " + (i+1));
-
-        }
-        yield break;
-    }
+    
 
 
 

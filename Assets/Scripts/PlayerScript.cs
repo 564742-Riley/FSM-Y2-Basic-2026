@@ -19,6 +19,7 @@ public class PlayerScript : MonoBehaviour
     public InputAction jumpAction;
     public InputAction interactAction;
     public InputAction attackAction;
+    
 
 
 
@@ -40,6 +41,7 @@ public class PlayerScript : MonoBehaviour
 
 
     }
+    
 
     private void Update()
     {
@@ -47,6 +49,7 @@ public class PlayerScript : MonoBehaviour
         sm.Update();
 
         UIscript.ui.DrawText("Current state= " + sm.currentState + "  Last state= " + sm.lastState);
+
 
     }
 
